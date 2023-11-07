@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handleURL - Open the console of the browser</title>
+    <script type="module">
+        import handleURL from './handleURL.js';
+        /* CONSTANTS */
+        const NOT_REAL_URL = "hola.com";
+        const URL_WITHOUT_PARAMS = "http://hola.com";
+        const URL_WITH_PARAMS = "http://hola.com?test=not&id=123456789&user=TioDeLaTiza";
+
+        /* CORE */
+        const isNotUrl = handleURL.isValidURL(NOT_REAL_URL);
+        const isUrl = handleURL.isValidURL(URL_WITHOUT_PARAMS);
+
+        const addParamUrl = handleURL.set({
+            url: URL_WITHOUT_PARAMS,
+            dataJson: { location: "9999", name: "MartinezAres" }
+        });
+
+        const updateParamUrl = handleURL.set({
+            url: URL_WITH_PARAMS,
+            dataJson: { id: "9999", user: "MartinezAres" }
+        });
+        const getParamsAndValues = handleURL.get({
+            url: URL_WITH_PARAMS,
+            dataArray: ["id", "user"]
+        });
+
+        /* INIT */
+        console.log(`Is this **${NOT_REAL_URL}** url?: ${isNotUrl}`);
+        console.log(`Is this **${URL_WITHOUT_PARAMS}** url?: ${isUrl}`);
+        console.log(`Original url ${URL_WITHOUT_PARAMS}, Added params: ${addParamUrl}`);
+        console.log(`Original url ${URL_WITH_PARAMS}, updated params: ${updateParamUrl}`);
+        console.log(`Original url ${URL_WITH_PARAMS}, get params:`, getParamsAndValues);
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
